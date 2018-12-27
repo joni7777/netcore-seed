@@ -1,14 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System.IO;
 using System.Reflection;
 using Bp.RouterAliases;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
-using Sample.Implementations;
 
 namespace BpSeed.API
 {
@@ -24,24 +24,18 @@ namespace BpSeed.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var routersList = new List<Assembly>
-            {
-                typeof(SampleRouter).Assembly
-            };
+            services.AddDbContext<SchoolContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            routersList.ForEach(router =>
-                services.AddMvc(options =>
-                    {
-                        options.Conventions.Add(
-                            new RouteTokenTransformerConvention(new RouterParameterTransformer()));
-                    })
-                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
-                    .AddApplicationPart(router)
-            );
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo {Title = "Bp Seed", Version = "v1"});
-            });
+            services
+                .AddMvc(options => options.Conventions.Add(
+                    new RouteTokenTransformerConvention(new RouterParameterTransformer())))
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddApplicationPart(
+                    Assembly.LoadFile(
+                        $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}/Components.dll"));
+            
+            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "BpSeed", Version = "v1"}); });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,6 +55,13 @@ namespace BpSeed.API
             app.UseMvc();
             app.UseSwagger();
             app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "Bp Seed V1"); });
+        }
+    }
+
+    public class SchoolContext : DbContext
+    {
+        public SchoolContext(DbContextOptions<SchoolContext> options) : base(options)
+        {
         }
     }
 }
