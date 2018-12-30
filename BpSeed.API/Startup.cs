@@ -26,7 +26,7 @@ namespace BpSeed.API
         {
             services.AddDbContext<SchoolContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
+            
             services
                 .AddMvc(options => options.Conventions.Add(
                     new RouteTokenTransformerConvention(new RouterParameterTransformer())))
@@ -35,7 +35,11 @@ namespace BpSeed.API
                     Assembly.LoadFile(
                         $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}/Components.dll"));
             
-            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "BpSeed", Version = "v1"}); });
+            services.AddSwaggerGen(c =>
+            {
+                var service = Configuration.GetSection("Service");
+                c.SwaggerDoc($"v{service["Version"]}", new OpenApiInfo {Title = service["Name"], Version = "v1"});
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

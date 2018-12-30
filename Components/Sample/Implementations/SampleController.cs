@@ -1,3 +1,4 @@
+using System;
 using Components.Sample.Interfaces;
 
 namespace Components.Sample.Implementations
@@ -6,6 +7,7 @@ namespace Components.Sample.Implementations
     {
         public string[] Get()
         {
+            throw new ApplicationException();
             return Get(6);
         }
 

@@ -1,5 +1,6 @@
-﻿using System;
+﻿using Serilog;
 using System.IO;
+using Bp.Logging;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -20,8 +21,9 @@ namespace BpSeed.API
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .ConfigureAppConfiguration(ConfigConfiguration)
-                .UseStartup<Startup>();
-        
+                .UseStartup<Startup>()
+                .UseSerilog(SerilogInit.ConfigureLogger);
+
         private static void ConfigConfiguration(WebHostBuilderContext hostingContext, IConfigurationBuilder config)
         {
             var environmentName = hostingContext.HostingEnvironment.EnvironmentName;
