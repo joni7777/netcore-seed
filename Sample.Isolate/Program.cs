@@ -1,0 +1,38 @@
+﻿using BpSeed.Isolate;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json.Linq;
+using System;
+using System.Threading.Tasks;
+
+namespace Sample.Isolate
+{
+    class Program
+    {
+        static Task Main(string[] args)
+        {
+            var builder = IsolateBuilder.For<ServiceIsolate>()
+                .UseEnvironment(args[0])
+                
+                .ConfigureServices(services => services.Add(null /* some service */))
+                ;
+
+            return builder.Build().RunAsync();
+        }
+    }
+
+    public class ServiceIsolate : IsolateAction
+    {
+        public ServiceIsolate(IHostingEnvironment environment, IConfiguration configuration) : base(environment, configuration)
+        {
+        }
+
+        protected override Task<JObject> GenerateIsolateConfigAsync()
+        {
+            return Task.FromResult(JObject.FromObject(new
+            {
+                partition = "Blachman"
+            }));
+        }
+    }
+}
