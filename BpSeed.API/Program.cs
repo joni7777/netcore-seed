@@ -18,9 +18,8 @@ namespace BpSeed.API
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .ConfigureAppConfiguration(ConfigConfiguration)
-                .UseStartup<Startup>();
+            WebHost.CreateDefaultBuilder<Startup>(args)
+                .ConfigureAppConfiguration(ConfigConfiguration);
         
         private static void ConfigConfiguration(WebHostBuilderContext hostingContext, IConfigurationBuilder config)
         {
