@@ -4,11 +4,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BpSeed.API", "BpSeed.API\Bp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BpSeed.Common", "BpSeed.Common\BpSeed.Common.csproj", "{BA60F45A-EFA6-4589-A946-EE887ADE599B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Components", "Components", "{AD2AA18A-26D7-45EE-AB32-743AB848C4C4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample", "Sample\Sample.csproj", "{AA6032D1-127F-400F-9300-DD025BC03CF4}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bp.RouterAliases", "Bp.RouterAliases\Bp.RouterAliases.csproj", "{9138AA44-831A-45E6-BE70-0868E7057D02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Components", "Components\Components.csproj", "{284FF4EE-5C90-4AA9-8F4B-CDF937A0E443}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,16 +22,15 @@ Global
 		{BA60F45A-EFA6-4589-A946-EE887ADE599B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA60F45A-EFA6-4589-A946-EE887ADE599B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA60F45A-EFA6-4589-A946-EE887ADE599B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AA6032D1-127F-400F-9300-DD025BC03CF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AA6032D1-127F-400F-9300-DD025BC03CF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AA6032D1-127F-400F-9300-DD025BC03CF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AA6032D1-127F-400F-9300-DD025BC03CF4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9138AA44-831A-45E6-BE70-0868E7057D02}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9138AA44-831A-45E6-BE70-0868E7057D02}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9138AA44-831A-45E6-BE70-0868E7057D02}.Debug|Any CPU.ActiveCfg = Release|Any CPU
 		{9138AA44-831A-45E6-BE70-0868E7057D02}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{284FF4EE-5C90-4AA9-8F4B-CDF937A0E443}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{284FF4EE-5C90-4AA9-8F4B-CDF937A0E443}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{284FF4EE-5C90-4AA9-8F4B-CDF937A0E443}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{284FF4EE-5C90-4AA9-8F4B-CDF937A0E443}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{AA6032D1-127F-400F-9300-DD025BC03CF4} = {AD2AA18A-26D7-45EE-AB32-743AB848C4C4}
 	EndGlobalSection
 EndGlobal
