@@ -1,4 +1,3 @@
-using System;
 using Bp.RouterAliases;
 using Components.Sample.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -19,7 +18,7 @@ namespace Components.Sample.Implementations
         [HttpGet]
         public string[] Get()
         {
-            _logger.LogInformation("6");
+//            _logger.LogInformation("6");
             return _sampleController.Get();
         }
 

@@ -1,6 +1,8 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Reflection;
 using Bp.RouterAliases;
+using BpSeed.Common;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -14,9 +16,13 @@ namespace BpSeed.API
 {
     public class Startup
     {
+        private MicroserviceInfo _serviceInfo;
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            _serviceInfo = Configuration.GetSection("Service").Get<MicroserviceInfo>();
+            if(!_serviceInfo.IsValid()) throw new ArgumentException(MicroserviceInfo.MICROSERVICE_MISSING_CONFIGURATION_MESSAGE);
         }
 
         public IConfiguration Configuration { get; }
@@ -35,11 +41,7 @@ namespace BpSeed.API
                     Assembly.LoadFile(
                         $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}/Components.dll"));
             
-            services.AddSwaggerGen(c =>
-            {
-                var service = Configuration.GetSection("Service");
-                c.SwaggerDoc($"v{service["Version"]}", new OpenApiInfo {Title = service["Name"], Version = "v1"});
-            });
+            services.AddSwaggerGen(c => c.SwaggerDoc($"{_serviceInfo}", new OpenApiInfo {Title = _serviceInfo.Name, Version = _serviceInfo.Version}));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,7 +60,7 @@ namespace BpSeed.API
             app.UseHttpsRedirection();
             app.UseMvc();
             app.UseSwagger();
-            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "Bp Seed V1"); });
+            app.UseSwaggerUI(c => c.SwaggerEndpoint($"/swagger/{_serviceInfo}/swagger.json", $"{_serviceInfo.Name} - V{_serviceInfo.Version}"));
         }
     }
 
