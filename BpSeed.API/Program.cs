@@ -1,3 +1,4 @@
+using Serilog;
 using Bp.Config;
 using Bp.Logging;
 using Microsoft.AspNetCore;
