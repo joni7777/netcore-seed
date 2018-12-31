@@ -12,9 +12,8 @@ namespace Bp.Logging.Sinks.Splunk
 {
     public class BpSplunkSink : BpBulkHttpSink
     {
-        private readonly string _splunkUrl;
         private readonly BpSplunkInfo _splunkInfo;
-        private readonly BpLogFormatter _formater;
+        private readonly BpLogFormatter _formatter;
         private AuthenticationHeaderValue _basicAuth;
 
         public BpSplunkSink(BpSplunkInfo splunkInfo, BpLogFormatter formatter = null, ConcurrentBag<LogEvent> logs = null, Timer timer = null,
@@ -23,7 +22,7 @@ namespace Bp.Logging.Sinks.Splunk
         {
             _basicAuth = CreateBasicAuth(splunkInfo);
             _splunkInfo = splunkInfo;
-            _formater = formatter ?? new BpSplunkLogFormatter();
+            _formatter = formatter ?? new BpSplunkLogFormatter();
         }
 
         protected override void ConfigureHttpRequest(HttpRequestMessage request)
@@ -52,7 +51,7 @@ namespace Bp.Logging.Sinks.Splunk
 
             foreach (LogEvent log in logs)
             {
-                joinedLogs += string.Format("{0}{0}", _formater.Format(log), Environment.NewLine);
+                joinedLogs += string.Format("{0}{0}", _formatter.Format(log), Environment.NewLine);
             }
 
             return new StringContent(joinedLogs, Encoding.UTF8, "application/json");
