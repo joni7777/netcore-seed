@@ -67,9 +67,11 @@ namespace BpSeed.Isolate
             return provider.GetRequiredService<IsolateAction>();
         }
 
-        public static IConfigureEnvironment For<TAction>() where TAction : IsolateAction
+        public static IIsolateBuilder For<TAction>(params string[] args) where TAction : IsolateAction
         {
-            return new IsolateBuilder().UseAction<TAction>();
+            return new IsolateBuilder()
+                .UseAction<TAction>()
+                .UseEnvironment(args[0]);
         }
     }
 }

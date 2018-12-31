@@ -11,8 +11,7 @@ namespace Sample.Isolate
     {
         static Task Main(string[] args)
         {
-            var builder = IsolateBuilder.For<ServiceIsolate>()
-                .UseEnvironment(args[0])
+            var builder = IsolateBuilder.For<ServiceIsolate>(args)
                 
                 .ConfigureServices(services => services.Add(null /* some service */))
                 ;
