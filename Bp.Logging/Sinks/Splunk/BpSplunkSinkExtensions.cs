@@ -11,10 +11,10 @@ namespace Bp.Logging.Sinks.Splunk
     {
         public static LoggerConfiguration BpSplunkSink(
             this LoggerSinkConfiguration loggerConfiguration,
-            BpSplunkInfo splunkInfo, BpLogFormatter formatter = null, ConcurrentBag<LogEvent> logs = null, Timer timer = null,
+            BpSplunkInfo splunkInfo, ConcurrentBag<LogEvent> logs = null, Timer timer = null,
             HttpClient httpClient = null, LogEventLevel restrictedToMinimumLevel = LogEventLevel.Verbose)
         {
-            return loggerConfiguration.Sink(new BpSplunkSink(splunkInfo, formatter, logs, timer, httpClient), restrictedToMinimumLevel);
+            return loggerConfiguration.Sink(new BpSplunkSink(splunkInfo, logs, timer, httpClient), restrictedToMinimumLevel);
         }
     }
 }

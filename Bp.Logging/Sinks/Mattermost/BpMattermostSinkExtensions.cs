@@ -11,10 +11,10 @@ namespace Bp.Logging.Sinks.Mattermost
     {
         public static LoggerConfiguration BpMattermostSink(
             this LoggerSinkConfiguration loggerConfiguration,
-            BpMattermostInfo bpMattermostInfo, BpLogFormatter formatter = null, ConcurrentBag<LogEvent> logs = null, Timer timer = null,
+            BpMattermostInfo bpMattermostInfo, ConcurrentBag<LogEvent> logs = null, Timer timer = null,
             HttpClient httpClient = null, LogEventLevel restrictedToMinimumLevel = LogEventLevel.Verbose)
         {
-            return loggerConfiguration.Sink(new BpMattermostSink(bpMattermostInfo, formatter, httpClient), restrictedToMinimumLevel);
+            return loggerConfiguration.Sink(new BpMattermostSink(bpMattermostInfo, httpClient), restrictedToMinimumLevel);
         }
     }
 }

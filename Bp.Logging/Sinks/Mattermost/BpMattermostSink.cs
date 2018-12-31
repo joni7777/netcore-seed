@@ -8,13 +8,11 @@ namespace Bp.Logging.Sinks.Mattermost
     public class BpMattermostSink:BpHttpSink
     {
         private readonly BpMattermostInfo _bpMattermostInfo;
-        private readonly BpLogFormatter _formatter;
 
-        public BpMattermostSink(BpMattermostInfo bpMattermostInfo, BpLogFormatter formatter = null, HttpClient httpClient = null) 
+        public BpMattermostSink(BpMattermostInfo bpMattermostInfo, HttpClient httpClient = null) 
             : base(httpClient ?? new HttpClient())
         {
             _bpMattermostInfo = bpMattermostInfo;
-            _formatter = formatter ?? new BpMattermostLogFormatter();
         }
 
         protected override string GenerateRequestUri(LogEvent logEvent)
@@ -26,7 +24,7 @@ namespace Bp.Logging.Sinks.Mattermost
         {
             logEvent.Properties.TryGetValue("ServiceName", out var serviceName);
 
-            var mattermostMessage = _formatter.Format(logEvent);
+            var mattermostMessage = BpMattermostLogFormatter.Format(logEvent);
 
             var builder = new StringBuilder();
             builder.Append('{');
