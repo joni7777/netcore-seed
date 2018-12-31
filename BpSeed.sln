@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bp.RouterAliases", "Bp.Rout
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Components", "Components\Components.csproj", "{284FF4EE-5C90-4AA9-8F4B-CDF937A0E443}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bp.Config", "Bp.Config\Bp.Config.csproj", "{A460C55F-7B3F-4033-A1BF-E979BD45AF50}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +32,10 @@ Global
 		{284FF4EE-5C90-4AA9-8F4B-CDF937A0E443}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{284FF4EE-5C90-4AA9-8F4B-CDF937A0E443}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{284FF4EE-5C90-4AA9-8F4B-CDF937A0E443}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A460C55F-7B3F-4033-A1BF-E979BD45AF50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A460C55F-7B3F-4033-A1BF-E979BD45AF50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A460C55F-7B3F-4033-A1BF-E979BD45AF50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A460C55F-7B3F-4033-A1BF-E979BD45AF50}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
