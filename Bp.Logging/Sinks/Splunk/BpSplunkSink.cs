@@ -6,6 +6,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading;
 using Bp.Logging.Sinks.Http;
+using Microsoft.Extensions.Primitives;
 using Serilog.Events;
 
 namespace Bp.Logging.Sinks.Splunk
@@ -47,14 +48,14 @@ namespace Bp.Logging.Sinks.Splunk
 
         protected override HttpContent GenerateRequestBody(ConcurrentBag<LogEvent> logs)
         {
-            var joinedLogs = "";
+            var joinedLogs = new StringBuilder();
 
             foreach (LogEvent log in logs)
             {
-                joinedLogs += string.Format("{0}{0}", _formatter.Format(log), Environment.NewLine);
+                joinedLogs.Append(string.Format("{0}{0}", _formatter.Format(log), Environment.NewLine));
             }
 
-            return new StringContent(joinedLogs, Encoding.UTF8, "application/json");
+            return new StringContent(joinedLogs.ToString(), Encoding.UTF8, "application/json");
         }
     }
 }
