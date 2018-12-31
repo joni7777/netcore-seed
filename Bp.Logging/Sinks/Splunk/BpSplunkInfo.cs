@@ -1,38 +1,33 @@
 using System;
-using Microsoft.Extensions.Configuration;
 
 namespace Bp.Logging.Sinks.Splunk
 {
     public class BpSplunkInfo
     {
-        public string Host { get; }
-        public string Port { get; }
-        public string Username { get; }
-        public string Password { get; }
-        public string Index { get; }
-        public string SourceType { get; }
+        public string Host { get; set; }
+        public string Port { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public string Index { get; set; }
+        public string SourceType { get; set; }
 
-        private const string SPLUNK_MISSING_CONFIGURATION_MESSAGE = "Splunk configuration require {0}";
+        public bool IsValid() =>
+            !String.IsNullOrEmpty(Host) && !String.IsNullOrEmpty(Port) &&
+            !String.IsNullOrEmpty(Username) && !String.IsNullOrEmpty(Password) &&
+            !String.IsNullOrEmpty(Index) && !String.IsNullOrEmpty(SourceType);
 
-        public BpSplunkInfo(IConfigurationSection loggerConfiguration)
-        :this(
-            loggerConfiguration["Host"],
-            loggerConfiguration["Port"],
-            loggerConfiguration["Username"],
-            loggerConfiguration["Password"],
-            loggerConfiguration["SourceType"],
-            loggerConfiguration["Index"])
-        {
-        }
+        public const string SPLUNK_MISSING_CONFIGURATION_MESSAGE = "Splunk missing required configuration";
+
+        public BpSplunkInfo(){}
 
         public BpSplunkInfo(string host, string port, string username, string password, string index, string sourceType)
         {
-            Host = host ?? throw new ArgumentNullException(nameof(host), string.Format(SPLUNK_MISSING_CONFIGURATION_MESSAGE, "host name"));
-            Port = port ?? throw new ArgumentNullException(nameof(port), string.Format(SPLUNK_MISSING_CONFIGURATION_MESSAGE, "port number"));
-            Username = username ?? throw new ArgumentNullException(nameof(username), string.Format(SPLUNK_MISSING_CONFIGURATION_MESSAGE, "username"));
-            Password = password ?? throw new ArgumentNullException(nameof(password), string.Format(SPLUNK_MISSING_CONFIGURATION_MESSAGE, "password"));
-            Index = index ?? throw new ArgumentNullException(nameof(index), string.Format(SPLUNK_MISSING_CONFIGURATION_MESSAGE, "splunk index"));
-            SourceType = sourceType ?? throw new ArgumentNullException(nameof(sourceType), string.Format(SPLUNK_MISSING_CONFIGURATION_MESSAGE, "splunk source type"));
+            Host = host;
+            Port = port;
+            Username = username;
+            Password = password;
+            Index = index;
+            SourceType = sourceType;
         }
     }
 }
