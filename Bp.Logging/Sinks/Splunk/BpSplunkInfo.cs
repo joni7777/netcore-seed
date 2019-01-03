@@ -6,7 +6,7 @@ namespace Bp.Logging.Sinks.Splunk
     {
         public string Protocol { get; set; }
         public string Host { get; set; }
-        public string Port { get; set; }
+        public int Port { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public string Index { get; set; }
@@ -14,7 +14,7 @@ namespace Bp.Logging.Sinks.Splunk
 
         public bool IsValid() =>
             !String.IsNullOrEmpty(Protocol) &&!String.IsNullOrEmpty(Host) &&
-            !String.IsNullOrEmpty(Port) && !String.IsNullOrEmpty(Username) &&
+            Port > 0 && !String.IsNullOrEmpty(Username) &&
             !String.IsNullOrEmpty(Password) && !String.IsNullOrEmpty(Index) &&
             !String.IsNullOrEmpty(SourceType);
 
@@ -22,7 +22,7 @@ namespace Bp.Logging.Sinks.Splunk
 
         public BpSplunkInfo(){}
 
-        public BpSplunkInfo(string protocol, string host, string port, string username, string password, string index, string sourceType)
+        public BpSplunkInfo(string protocol, string host, int port, string username, string password, string index, string sourceType)
         {
             Protocol = protocol;
             Host = host;

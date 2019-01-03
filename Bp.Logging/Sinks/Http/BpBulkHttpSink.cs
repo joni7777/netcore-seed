@@ -60,7 +60,7 @@ namespace Bp.Logging.Sinks.Http
         {
             ConcurrentBag<LogEvent> existingLogs = new ConcurrentBag<LogEvent>();
             
-            while (logs.Count > 0)
+            while(!logs.IsEmpty)
             {
                 if (logs.TryTake(out LogEvent log))
                 {

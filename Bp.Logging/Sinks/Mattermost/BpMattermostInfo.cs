@@ -7,12 +7,12 @@ namespace Bp.Logging.Sinks.Mattermost
     {
         public string Protocol { get; set; }
         public string Host { get; set; }
-        public string Port { get; set; }
+        public int Port { get; set; }
         public string Path { get; set; }
 
         public bool IsValid() =>
             !String.IsNullOrEmpty(Protocol) && !String.IsNullOrEmpty(Host) &&
-            !String.IsNullOrEmpty(Port) && !String.IsNullOrEmpty(Path);
+            Port > 0 && !String.IsNullOrEmpty(Path);
 
         public const string MATTERMOST_MISSING_CONFIGURATION_MESSAGE = "Mattermost missing required configuration";
 
@@ -21,7 +21,7 @@ namespace Bp.Logging.Sinks.Mattermost
             
         }
 
-        public BpMattermostInfo(string protocol, string host, string port, string path)
+        public BpMattermostInfo(string protocol, string host, int port, string path)
         {
             Protocol = protocol;
             Host = host;

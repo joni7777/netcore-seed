@@ -12,7 +12,7 @@ namespace Bp.Logging.Sinks.Splunk
     public class BpSplunkSink : BpBulkHttpSink
     {
         private readonly BpSplunkInfo _splunkInfo;
-        private AuthenticationHeaderValue _basicAuth;
+        private readonly AuthenticationHeaderValue _basicAuth;
 
         public BpSplunkSink(BpSplunkInfo splunkInfo, ConcurrentBag<LogEvent> logs = null, Timer timer = null,
             HttpClient httpClient = null)
@@ -27,7 +27,7 @@ namespace Bp.Logging.Sinks.Splunk
             request.Headers.Authorization = _basicAuth;
         }
 
-        private AuthenticationHeaderValue CreateBasicAuth(BpSplunkInfo splunkInfo)
+        private static AuthenticationHeaderValue CreateBasicAuth(BpSplunkInfo splunkInfo)
         {
             string usernamePassword = $"{splunkInfo.Username}:{splunkInfo.Password}";
             byte[] encodedBytes = Encoding.Unicode.GetBytes(usernamePassword);

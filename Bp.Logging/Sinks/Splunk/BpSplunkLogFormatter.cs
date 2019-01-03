@@ -15,7 +15,7 @@ namespace Bp.Logging.Sinks.Splunk
             formattedLog.Append($"severity=\"{logEvent.Level}\" ");
             formattedLog.Append($"action=\"{logEvent.RenderMessage()}\" ");
 
-            foreach (KeyValuePair<string, LogEventPropertyValue> property in logEvent.Properties)
+            foreach (var property in logEvent.Properties)
             {
                 formattedLog.Append($"{property.Key}={property.Value} ");
             }

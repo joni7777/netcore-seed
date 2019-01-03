@@ -11,7 +11,7 @@ namespace Components.Sample.Implementations
         private readonly ISampleController _sampleController = new SampleControllerFactory().Create();
         private readonly ILogger _logger;
 
-        public SampleRouter([FromServices] ILogger<SampleRouter> logger)
+        public SampleRouter(ILogger<SampleRouter> logger)
         {
             _logger = logger;
         }
