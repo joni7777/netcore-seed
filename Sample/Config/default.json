@@ -1,4 +1,32 @@
 {
     "port": 10006,
-    "environment": "dev"
+    "environment": "dev",
+    "mongodb": {
+        "connectionString": "...",
+        "collections": [
+            "name1",
+            "name2",
+            "name3"
+        ],
+        "seedData": {
+            "name1": [
+                {
+                    "_id": "...",
+                    "property1": "..."
+                }
+            ],
+            "name2": [
+                {
+                    "_id": "...",
+                    "property1": "..."
+                }
+            ],
+            "name3": [
+                {
+                    "_id": "...",
+                    "property1": "..."
+                }
+            ]
+        }
+    }
 }

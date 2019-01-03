@@ -37,29 +37,4 @@ namespace BpSeed.Isolate
             }
         }
     }
-
-    public class DefaultIsolate : IsolateAction
-    {
-        public DefaultIsolate(IHostingEnvironment environment, IConfiguration configuration) : base(environment, configuration)
-        {
-        }
-
-        protected override Task<JObject> GenerateIsolateConfigAsync()
-        {
-            return Task.FromResult(JObject.Parse("{}"));
-        }
-    }
-
-    public class MongoIsolate : IsolateAction
-    {
-        public MongoIsolate(IHostingEnvironment environment, IConfiguration configuration) : base(environment, configuration)
-        {
-        }
-
-        protected override Task<JObject> GenerateIsolateConfigAsync()
-        {
-            // TODO: implement this based on existing configuration
-            return null;
-        }
-    }
 }
