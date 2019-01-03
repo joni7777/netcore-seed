@@ -26,9 +26,11 @@ namespace Sample.Isolate
 
         protected override Task<JObject> GenerateIsolateConfigAsync()
         {
+            var port = Configuration.GetValue<int>("port");
             return Task.FromResult(JObject.FromObject(new
             {
-                partition = "Blachman"
+                partition = "Blachman",
+                newPort = port
             }));
         }
     }

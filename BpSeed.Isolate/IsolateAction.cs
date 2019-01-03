@@ -31,7 +31,6 @@ namespace BpSeed.Isolate
         private async Task SaveGeneratedIsolateConfigAsync(JObject isolatedConfiguration)
         {
             var json = isolatedConfiguration.ToString();
-            Console.WriteLine($"ContentRootPath: {Environment.ContentRootPath}");
             using (var writer = File.CreateText(Path.Combine(Environment.ContentRootPath, "config", $"{Environment.EnvironmentName}.json")))
             {
                 await writer.WriteAsync(json);
@@ -59,6 +58,7 @@ namespace BpSeed.Isolate
 
         protected override Task<JObject> GenerateIsolateConfigAsync()
         {
+            // TODO: implement this based on existing configuration
             return null;
         }
     }

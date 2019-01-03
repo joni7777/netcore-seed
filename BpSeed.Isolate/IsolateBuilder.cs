@@ -58,15 +58,18 @@ namespace BpSeed.Isolate
             var hostEnvironment = new HostingEnvironment
             {
                 EnvironmentName = environment,
-                ContentRootPath = Path.Combine("..", typeof(TAction).Assembly.GetName().Name.Replace(".Isolate", string.Empty))
-            };
+                ContentRootPath = Path.GetFullPath(Path.Combine("..", typeof(TAction).Assembly.GetName().Name.Replace(".Isolate", string.Empty)))
+            };            
             return new IsolateBuilder()
                 .ConfigureServices(services => 
                 {
                     services.AddSingleton<IsolateAction, TAction>();
                     services.AddSingleton<IHostingEnvironment>(hostEnvironment);
                 })
-                .ConfigureConfiguration(config => config.AddInMemoryCollection(data));
+                .ConfigureConfiguration(config => config
+                    .SetBasePath(hostEnvironment.ContentRootPath)
+                    .AddInMemoryCollection(data)
+                    .AddJsonFile("config/default.json", optional: false));
         }
     }
 }
