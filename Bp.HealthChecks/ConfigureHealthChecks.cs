@@ -13,6 +13,7 @@ namespace Bp.HealthChecks
         {
             IHealthChecksBuilder healthChecks = services.AddHealthChecks();
 
+            // TODO: Use real config path
             string sqlConfig = configuration["Data:ConnectionStrings:Sql"];
             if (sqlConfig != null)
             {
@@ -38,6 +39,7 @@ namespace Bp.HealthChecks
 
         public static void UseBpHealthChecks(IApplicationBuilder app)
         {
+            // TODO: Add routes to swagger
             app.UseHealthChecks("/system/sanity", new HealthCheckOptions
             {
                 Predicate = r => r.Tags.Contains(HealthCheckTag.Sanity.ToString())

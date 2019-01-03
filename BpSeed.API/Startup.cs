@@ -53,9 +53,9 @@ namespace BpSeed.API
             }
 
             app.UseMvc();
+            app.UseBpHealthChecks();
             app.UseSwagger();
             app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "Bp Seed V1"); });
-            app.UseBpHealthChecks();
         }
     }
 
