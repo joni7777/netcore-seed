@@ -6,9 +6,9 @@ namespace Bp.HealthChecks
 {
     public static class ConfigureHealthChecksExtension
     {
-        public static void ConfigureBpHealthChecksService(this IServiceCollection services,
+        public static void ConfigureBpHealthChecksServices(this IServiceCollection services,
             IConfiguration configuration) =>
-            ConfigureHealthChecks.ConfigureBpHealthChecksService(services, configuration);
+            ConfigureHealthChecks.ConfigureBpHealthChecksServices(services, configuration);
 
         public static void UseBpHealthChecks(this IApplicationBuilder app) =>
             ConfigureHealthChecks.UseBpHealthChecks(app);

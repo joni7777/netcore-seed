@@ -35,7 +35,7 @@ namespace BpSeed.API
                     .AddApplicationPart(Assembly.GetEntryAssembly());
             
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "BpSeed", Version = "v1"}); });
-            services.ConfigureBpHealthChecksService(Configuration);
+            services.ConfigureBpHealthChecksServices(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http;
+using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Configuration;
@@ -9,7 +10,7 @@ namespace Bp.HealthChecks
 {
     public class ConfigureHealthChecks
     {
-        public static void ConfigureBpHealthChecksService(IServiceCollection services, IConfiguration configuration)
+        public static void ConfigureBpHealthChecksServices(IServiceCollection services, IConfiguration configuration)
         {
             IHealthChecksBuilder healthChecks = services.AddHealthChecks();
 
@@ -17,35 +18,37 @@ namespace Bp.HealthChecks
             string sqlConfig = configuration["Data:ConnectionStrings:Sql"];
             if (sqlConfig != null)
             {
-                healthChecks.AddSqlServer(sqlConfig, tags: new[] {HealthCheckTag.Data.ToString()});
+                healthChecks.AddSqlServer(sqlConfig, name: "sql-health", tags: new[] {HealthCheckTag.Data.ToString()});
             }
 
             string elasticConfig = configuration["Data:ConnectionStrings:Elastic"];
             if (elasticConfig != null)
             {
-                healthChecks.AddElasticsearch(elasticConfig, tags: new[] {HealthCheckTag.Data.ToString()});
+                healthChecks.AddElasticsearch(elasticConfig, name: "elastic-health", tags: new[] {HealthCheckTag.Data.ToString()});
             }
 
             string mongoConfig = configuration["Data:ConnectionStrings:Mongo"];
             if (mongoConfig != null)
             {
-                healthChecks.AddMongoDb(mongoConfig, tags: new[] {HealthCheckTag.Data.ToString()});
+                healthChecks.AddMongoDb(mongoConfig, name: "mongo-health", tags: new[] {HealthCheckTag.Data.ToString()});
             }
 
             healthChecks.AddUrlGroup(
                 new Uri("http://localhost:5000/swagger/v1/swagger.json"),
+                name: "Get swagger.json",
                 tags: new[] {HealthCheckTag.Sanity.ToString()});
+
+            services.AddMvc().AddApplicationPart(Assembly.GetExecutingAssembly());
         }
 
         public static void UseBpHealthChecks(IApplicationBuilder app)
         {
-            // TODO: Add routes to swagger
-            app.UseHealthChecks("/system/sanity", new HealthCheckOptions
+            app.UseHealthChecks("/api/system/sanity", new HealthCheckOptions
             {
                 Predicate = r => r.Tags.Contains(HealthCheckTag.Sanity.ToString())
             });
 
-            app.UseHealthChecks("/system/data", new HealthCheckOptions
+            app.UseHealthChecks("/api/system/data", new HealthCheckOptions
             {
                 Predicate = r => r.Tags.Contains(HealthCheckTag.Data.ToString())
             });
