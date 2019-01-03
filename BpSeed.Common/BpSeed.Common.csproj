@@ -8,5 +8,9 @@
         <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.0" />
         <PackageReference Include="Microsoft.AspNetCore.Routing.Abstractions" Version="2.2.0" />
     </ItemGroup>
+    
+    <ItemGroup>
+      <Folder Include="Extensions" />
+    </ItemGroup>
 
 </Project>

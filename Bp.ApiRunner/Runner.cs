@@ -1,7 +1,9 @@
 using Bp.Config;
+using Bp.Logging;
 using Microsoft.AspNetCore.Hosting;
+using Serilog;
 
-namespace BpSeed.API
+namespace Bp.ApiRunner
 {
     public class Runner
     {
@@ -10,7 +12,8 @@ namespace BpSeed.API
             var builder = new WebHostBuilder()
                 .UseStartup<Startup>()
                 .UseKestrel()
-                .ConfigureAppConfiguration(ConfigureConfiguration.AddConfigurationByEnvironment);
+                .ConfigureAppConfiguration(ConfigureConfiguration.AddConfigurationByEnvironment)
+                .UseSerilog(SerilogInit.ConfigureLogger);
 
             builder.Build().Run();
         }

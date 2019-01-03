@@ -1,16 +1,27 @@
+using System;
 using Bp.RouterAliases;
 using Components.Sample.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace Components.Sample.Implementations
 {
     public class SampleRouter : RouterBase
     {
         private readonly ISampleController _sampleController = new SampleControllerFactory().Create();
+        private readonly ILogger _logger;
+
+        public SampleRouter([FromServices] ILogger<SampleRouter> logger)
+        {
+            _logger = logger;
+        }
         
         [HttpGet]
         public string[] Get()
         {
+            _logger.LogInformation("6");
+            _logger.LogInformation("8");
+            _logger.LogInformation("7");
             return _sampleController.Get();
         }
 

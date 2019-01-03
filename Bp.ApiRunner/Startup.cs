@@ -1,5 +1,7 @@
-﻿using System.Reflection;
+using System;
+using System.Reflection;
 using Bp.RouterAliases;
+using BpSeed.Common;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -9,17 +11,21 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
-namespace BpSeed.API
+namespace Bp.ApiRunner
 {
     public class Startup
     {
+        private MicroserviceInfo _serviceInfo;
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            _serviceInfo = Configuration.GetSection("Service").Get<MicroserviceInfo>();
+            if(!_serviceInfo.IsValid()) throw new ArgumentException(MicroserviceInfo.MICROSERVICE_MISSING_CONFIGURATION_MESSAGE);
         }
 
         public IConfiguration Configuration { get; }
-        
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -32,7 +38,11 @@ namespace BpSeed.API
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                     .AddApplicationPart(Assembly.GetEntryAssembly());
             
-            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "BpSeed", Version = "v1"}); });
+            services.AddSwaggerGen(c =>
+            {
+                
+                c.SwaggerDoc(_serviceInfo.Version, new OpenApiInfo {Title = _serviceInfo.Name, Version = _serviceInfo.Version});
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,7 +61,7 @@ namespace BpSeed.API
             app.UseHttpsRedirection();
             app.UseMvc();
             app.UseSwagger();
-            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "Bp Seed V1"); });
+            app.UseSwaggerUI(c => c.SwaggerEndpoint($"/swagger/{_serviceInfo.Version}/swagger.json", $"{_serviceInfo.Name} - V{_serviceInfo.Version}"));
         }
     }
 
