@@ -1,8 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>netcoreapp2.2</TargetFramework>
-        <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
     </PropertyGroup>
 
     <ItemGroup>
@@ -15,7 +14,6 @@
       <ProjectReference Include="..\Bp.Config\Bp.Config.csproj" />
       <ProjectReference Include="..\Bp.RouterAliases\Bp.RouterAliases.csproj" />
       <ProjectReference Include="..\BpSeed.Common\BpSeed.Common.csproj" />
-      <ProjectReference Include="..\Components\Components.csproj" />
     </ItemGroup>
 
 </Project>
