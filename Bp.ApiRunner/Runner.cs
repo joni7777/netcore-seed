@@ -13,7 +13,7 @@ namespace Bp.ApiRunner
                 .UseStartup<Startup>()
                 .UseKestrel()
                 .ConfigureAppConfiguration(ConfigureConfiguration.AddConfigurationByEnvironment)
-                .UseSerilog(SerilogInit.ConfigureLogger);;
+                .UseSerilog(SerilogInit.ConfigureLogger);
 
             builder.Build().Run();
         }

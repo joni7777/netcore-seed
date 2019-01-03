@@ -20,6 +20,8 @@ namespace Components.Sample.Implementations
         public string[] Get()
         {
             _logger.LogInformation("6");
+            _logger.LogInformation("8");
+            _logger.LogInformation("7");
             return _sampleController.Get();
         }
 

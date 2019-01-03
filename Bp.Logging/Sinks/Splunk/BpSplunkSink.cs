@@ -39,7 +39,7 @@ namespace Bp.Logging.Sinks.Splunk
         {
             logEvent.Properties.TryGetValue("ServiceName", out var serviceName);
             return
-                $"https://{_splunkInfo.Host}:{_splunkInfo.Port}/services/receivers/simple?index={_splunkInfo.Index}&sourcetype={_splunkInfo.SourceType}&source={serviceName}&output_mode=json";
+                $"{_splunkInfo.Protocol}://{_splunkInfo.Host}:{_splunkInfo.Port}/services/receivers/simple?index={_splunkInfo.Index}&sourcetype={_splunkInfo.SourceType}&source={serviceName.ToString().Replace("\"", "")}&output_mode=json";
         }
 
         protected override HttpContent GenerateRequestBody(ConcurrentBag<LogEvent> logs)
@@ -51,7 +51,7 @@ namespace Bp.Logging.Sinks.Splunk
                 joinedLogs.AppendLine(BpSplunkLogFormatter.Format(log));
             }
 
-            return new StringContent(joinedLogs.ToString(), Encoding.UTF8, "application/json");
+            return new StringContent(joinedLogs.ToString(), Encoding.UTF8, "text/plain");
         }
     }
 }

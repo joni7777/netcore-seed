@@ -2,8 +2,10 @@ using System;
 using System.Collections.Concurrent;
 using System.Net.Http;
 using System.Threading;
+using BpSeed.Common;
 using Serilog.Core;
 using Serilog.Events;
+using BpSeed.Common.Extensions;
 
 namespace Bp.Logging.Sinks.Http
 {
