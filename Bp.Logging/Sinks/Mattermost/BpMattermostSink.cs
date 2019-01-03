@@ -17,7 +17,7 @@ namespace Bp.Logging.Sinks.Mattermost
 
         protected override string GenerateRequestUri(LogEvent logEvent)
         {
-            return $"https://{_bpMattermostInfo.Host}/{_bpMattermostInfo.Path}";
+            return $"{_bpMattermostInfo.Protocol}://{_bpMattermostInfo.Host}:{_bpMattermostInfo.Port}/{_bpMattermostInfo.Path}";
         }
 
         protected override HttpContent GenerateRequestBody(LogEvent logEvent)
@@ -26,13 +26,13 @@ namespace Bp.Logging.Sinks.Mattermost
 
             var mattermostMessage = BpMattermostLogFormatter.Format(logEvent);
 
-            var builder = new StringBuilder();
-            builder.Append('{');
-            builder.Append("\"username\":\"").Append(serviceName).Append("\",");
-            builder.Append("\"text\":\"").Append(mattermostMessage).Append("\"");
-            builder.Append("\"");
-            builder.Append('}');
-            return new StringContent(builder.ToString(), Encoding.UTF8, "application/json");
+            var stringLog = new StringBuilder();
+            stringLog.Append('{');
+            stringLog.Append("\"username\":\"").Append(serviceName).Append("\",");
+            stringLog.Append("\"text\":\"").Append(mattermostMessage).Append("\"");
+            stringLog.Append("\"");
+            stringLog.Append('}');
+            return new StringContent(stringLog.ToString(), Encoding.UTF8, "text/plain");
         }
     }
 }
