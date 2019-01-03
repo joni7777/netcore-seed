@@ -3,7 +3,7 @@ using Bp.Logging;
 using Microsoft.AspNetCore.Hosting;
 using Serilog;
 
-namespace BpSeed.API
+namespace Bp.ApiRunner
 {
     public class Runner
     {

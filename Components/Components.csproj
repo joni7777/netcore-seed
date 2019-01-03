@@ -6,8 +6,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Bp.ApiRunner\Bp.ApiRunner.csproj" />
       <ProjectReference Include="..\Bp.RouterAliases\Bp.RouterAliases.csproj" />
-      <ProjectReference Include="..\BpSeed.API\BpSeed.API.csproj" />
     </ItemGroup>
 
     <ItemGroup>
