@@ -1,8 +1,5 @@
-﻿using System;
-using System.IO;
 using System.Reflection;
 using Bp.RouterAliases;
-using BpSeed.Common;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -12,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
-namespace BpSeed.API
+namespace Bp.ApiRunner
 {
     public class Startup
     {
@@ -37,11 +34,13 @@ namespace BpSeed.API
                 .AddMvc(options => options.Conventions.Add(
                     new RouteTokenTransformerConvention(new RouterParameterTransformer())))
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
-                .AddApplicationPart(
-                    Assembly.LoadFile(
-                        $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}/Components.dll"));
+                    .AddApplicationPart(Assembly.GetEntryAssembly());
             
-            services.AddSwaggerGen(c => c.SwaggerDoc($"{_serviceInfo}", new OpenApiInfo {Title = _serviceInfo.Name, Version = _serviceInfo.Version}));
+            services.AddSwaggerGen(c =>
+            {
+                
+                c.SwaggerDoc(_serviceInfo.Version, new OpenApiInfo {Title = _serviceInfo.Name, Version = _serviceInfo.Version});
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,7 +59,7 @@ namespace BpSeed.API
             app.UseHttpsRedirection();
             app.UseMvc();
             app.UseSwagger();
-            app.UseSwaggerUI(c => c.SwaggerEndpoint($"/swagger/{_serviceInfo}/swagger.json", $"{_serviceInfo.Name} - V{_serviceInfo.Version}"));
+            app.UseSwaggerUI(c => c.SwaggerEndpoint($"/swagger/{_serviceInfo.Version}/swagger.json", $"{_serviceInfo.Name} - V{_serviceInfo.Version}"));
         }
     }
 
