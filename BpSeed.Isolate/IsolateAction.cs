@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -30,6 +31,7 @@ namespace BpSeed.Isolate
         private async Task SaveGeneratedIsolateConfigAsync(JObject isolatedConfiguration)
         {
             var json = isolatedConfiguration.ToString();
+            Console.WriteLine($"ContentRootPath: {Environment.ContentRootPath}");
             using (var writer = File.CreateText(Path.Combine(Environment.ContentRootPath, "config", $"{Environment.EnvironmentName}.json")))
             {
                 await writer.WriteAsync(json);

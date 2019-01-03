@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Hosting.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -69,9 +71,20 @@ namespace BpSeed.Isolate
 
         public static IIsolateBuilder For<TAction>(params string[] args) where TAction : IsolateAction
         {
+            var environment = args[0];
+            var data = new Dictionary<string, string> { ["environment"] = environment };
+            var hostEnvironment = new HostingEnvironment
+            {
+                EnvironmentName = environment,
+                ContentRootPath = Path.Combine("..", typeof(TAction).Assembly.GetName().Name.Replace(".Isolate", string.Empty))
+            };
             return new IsolateBuilder()
-                .UseAction<TAction>()
-                .UseEnvironment(args[0]);
+                .ConfigureServices(services => 
+                {
+                    services.AddSingleton<IsolateAction, TAction>();
+                    services.AddSingleton<IHostingEnvironment>(hostEnvironment);
+                })
+                .ConfigureConfiguration(config => config.AddInMemoryCollection(data));
         }
     }
 }

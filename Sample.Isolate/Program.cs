@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json.Linq;
-using System;
 using System.Threading.Tasks;
 
 namespace Sample.Isolate
@@ -11,10 +10,9 @@ namespace Sample.Isolate
     {
         static Task Main(string[] args)
         {
+            args = new[] { "autoenv" };
             var builder = IsolateBuilder.For<ServiceIsolate>(args)
-                
-                .ConfigureServices(services => services.Add(null /* some service */))
-                ;
+                .ConfigureServices(services => { /* some service */ });
 
             return builder.Build().RunAsync();
         }
