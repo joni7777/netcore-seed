@@ -13,9 +13,12 @@ namespace BpSeed.API
 {
     public class Startup
     {
+        private ServiceInfo _service;
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            _service = Configuration.GetSection("Service").Get<ServiceInfo>();
         }
 
         public IConfiguration Configuration { get; }
@@ -34,8 +37,8 @@ namespace BpSeed.API
             
             services.AddSwaggerGen(c =>
             {
-                var service = Configuration.GetSection("Service");
-                c.SwaggerDoc($"v{service["Version"]}", new OpenApiInfo {Title = service["Name"], Version = "v1"});
+                
+                c.SwaggerDoc(_service.Version, new OpenApiInfo {Title = _service.Name, Version = _service.Version});
             });
         }
 
@@ -55,7 +58,7 @@ namespace BpSeed.API
             app.UseHttpsRedirection();
             app.UseMvc();
             app.UseSwagger();
-            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "Bp Seed V1"); });
+            app.UseSwaggerUI(c => { c.SwaggerEndpoint($"/swagger/{_service.Version}/swagger.json", $"{_service.Name} V{_service.Version}"); });
         }
     }
 
