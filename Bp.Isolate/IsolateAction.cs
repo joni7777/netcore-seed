@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using System.IO;
 
-namespace BpSeed.Isolate
+namespace Bp.Isolate
 {
 
     public abstract class IsolateAction

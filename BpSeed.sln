@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Components", "Components\Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bp.Config", "Bp.Config\Bp.Config.csproj", "{A460C55F-7B3F-4033-A1BF-E979BD45AF50}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BpSeed.Isolate", "BpSeed.Isolate\BpSeed.Isolate.csproj", "{E5682609-DE03-47AD-95EF-61E1E05B337D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bp.Isolate", "Bp.Isolate\Bp.Isolate.csproj", "{E5682609-DE03-47AD-95EF-61E1E05B337D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Isolate", "Sample.Isolate\Sample.Isolate.csproj", "{9E295D92-AF5A-46B4-9535-B5606B3ECA57}"
 EndProject

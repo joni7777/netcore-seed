@@ -3,7 +3,7 @@ using Newtonsoft.Json.Linq;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 
-namespace BpSeed.Isolate
+namespace Bp.Isolate
 {
     public class DefaultIsolate : IsolateAction
     {

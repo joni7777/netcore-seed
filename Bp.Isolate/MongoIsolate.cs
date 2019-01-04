@@ -6,7 +6,7 @@ using MongoDB.Driver;
 using MongoDB.Bson;
 using System;
 
-namespace BpSeed.Isolate
+namespace Bp.Isolate
 {
     public class MongoIsolate : IsolateAction
     {

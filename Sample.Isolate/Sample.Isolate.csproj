@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BpSeed.Isolate\BpSeed.Isolate.csproj" />
+    <ProjectReference Include="..\Bp.Isolate\Bp.Isolate.csproj" />
   </ItemGroup>
 
 </Project>

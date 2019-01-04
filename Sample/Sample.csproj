@@ -10,7 +10,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Bp.RouterAliases\Bp.RouterAliases.csproj" />
-      <ProjectReference Include="..\BpSeed.Isolate\BpSeed.Isolate.csproj" />
     </ItemGroup>
 
     <ItemGroup>

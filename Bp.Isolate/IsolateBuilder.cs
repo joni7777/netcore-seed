@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Hosting.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace BpSeed.Isolate
+namespace Bp.Isolate
 {
     public class IsolateBuilder : IIsolateBuilder
     {
