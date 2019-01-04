@@ -7,7 +7,6 @@ using System.IO;
 
 namespace Bp.Isolate
 {
-
     public abstract class IsolateAction
     {
         protected IsolateAction(IHostingEnvironment environment, IConfiguration configuration)
@@ -31,7 +30,7 @@ namespace Bp.Isolate
         private async Task SaveGeneratedIsolateConfigAsync(JObject isolatedConfiguration)
         {
             var json = isolatedConfiguration.ToString();
-            using (var writer = File.CreateText(Path.Combine(Environment.ContentRootPath, "config", $"{Environment.EnvironmentName}.json")))
+            using (var writer = File.CreateText(Path.Combine(Environment.ContentRootPath, "Config", $"{Environment.EnvironmentName}.json")))
             {
                 await writer.WriteAsync(json);
             }
