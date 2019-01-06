@@ -30,7 +30,7 @@ namespace Bp.HealthChecks
             if (configuration["Kestrel:EndPoints:Https:Url"] != null)
             {
                 healthChecks.AddUrlGroup(
-                    new Uri($"{configuration["Kestrel:EndPoints:Http:Url"].Replace("*", "localhost")}/swagger/v1/swagger.json"),
+                    new Uri($"{configuration["Kestrel:EndPoints:Http:Url"].Replace("*", "localhost")}/swagger/{configuration["Service:Version"]}/swagger.json"),
                     name: "Get swagger.json",
                     tags: new[] {HealthCheckTag.SANITY});
             }

@@ -10,8 +10,4 @@
       <PackageReference Include="Serilog.Settings.Configuration" Version="3.0.1" />
     </ItemGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\BpSeed.Common\BpSeed.Common.csproj" />
-    </ItemGroup>
-
 </Project>

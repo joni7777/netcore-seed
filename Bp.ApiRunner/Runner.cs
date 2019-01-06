@@ -15,7 +15,7 @@ namespace Bp.ApiRunner
                 .UseKestrel((builderContext, options) =>
                 {
                     options.Configure(builderContext.Configuration.GetSection("Kestrel"));
-                });
+                })
                 .UseSerilog(SerilogInit.ConfigureLogger);
 
             builder.Build().Run();
