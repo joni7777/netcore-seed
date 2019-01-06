@@ -20,7 +20,7 @@ namespace Bp.HealthChecks
         public async Task<IDictionary<string, BpHealthReportEntry>> GetSanity()
         {
             var reports = (await _healthCheckService.CheckHealthAsync(checks =>
-                checks.Tags.Contains(HealthCheckTag.Sanity.ToString()))).Entries;
+                checks.Tags.Contains(HealthCheckTag.SANITY))).Entries;
             
             return reports.ToDictionary(pair => pair.Key, pair => new BpHealthReportEntry(pair.Value));
         }
@@ -29,7 +29,7 @@ namespace Bp.HealthChecks
         public async Task<IReadOnlyDictionary<string, BpHealthReportEntry>> GetData()
         {
             var reports = (await _healthCheckService.CheckHealthAsync(checks =>
-                checks.Tags.Contains(HealthCheckTag.Data.ToString()))).Entries;
+                checks.Tags.Contains(HealthCheckTag.DATA))).Entries;
             
             return reports.ToDictionary(pair => pair.Key, pair => new BpHealthReportEntry(pair.Value));
         }

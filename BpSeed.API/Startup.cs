@@ -2,7 +2,6 @@
 using Bp.HealthChecks;
 using Bp.RouterAliases;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
@@ -52,8 +51,8 @@ namespace BpSeed.API
                 app.UseHttpsRedirection();
             }
 
-            app.UseMvc();
             app.UseBpHealthChecks();
+            app.UseMvc();
             app.UseSwagger();
             app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "Bp Seed V1"); });
         }

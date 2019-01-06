@@ -1,8 +1,8 @@
 namespace Bp.HealthChecks
 {
-    public enum HealthCheckTag
+    public static class HealthCheckTag
     {
-        Sanity,
-        Data
+        public const string SANITY = "Sanity";
+        public const string DATA = "Data";
     }
 }

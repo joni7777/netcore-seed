@@ -9,8 +9,11 @@ namespace BpSeed.API
         {
             var builder = new WebHostBuilder()
                 .UseStartup<Startup>()
-                .UseKestrel()
-                .ConfigureAppConfiguration(ConfigureConfiguration.AddConfigurationByEnvironment);
+                .ConfigureAppConfiguration(ConfigureConfiguration.AddConfigurationByEnvironment)
+                .UseKestrel((builderContext, options) =>
+                {
+                    options.Configure(builderContext.Configuration.GetSection("Kestrel"));
+                });
 
             builder.Build().Run();
         }
