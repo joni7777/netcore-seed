@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Net.Http;
 using System.Reflection;
-using HealthChecks.Uris;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

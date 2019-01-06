@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 namespace Bp.HealthChecks
