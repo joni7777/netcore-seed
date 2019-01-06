@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using Bp.HealthChecks;
 using Bp.RouterAliases;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,12 +34,13 @@ namespace BpSeed.API
                     .AddApplicationPart(Assembly.GetEntryAssembly());
             
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "BpSeed", Version = "v1"}); });
+            services.ConfigureBpHealthChecksServices(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
+            if (!env.IsProduction())
             {
                 app.UseDeveloperExceptionPage();
             }
@@ -46,9 +48,10 @@ namespace BpSeed.API
             {
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
+                app.UseHttpsRedirection();
             }
 
-            app.UseHttpsRedirection();
+            app.UseBpHealthChecks();
             app.UseMvc();
             app.UseSwagger();
             app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "Bp Seed V1"); });
