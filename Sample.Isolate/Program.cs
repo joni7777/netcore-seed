@@ -1,4 +1,4 @@
-﻿using BBp.Isolate
+﻿using Bp.Isolate;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json.Linq;
@@ -10,7 +10,6 @@ namespace Sample.Isolate
     {
         static Task Main(string[] args)
         {
-            args = new[] { "autoenv" };
             var builder = IsolateBuilder.For<ServiceIsolate>(args)
                 .ConfigureServices(services => { /* some service */ });
 
