@@ -69,7 +69,7 @@ namespace Bp.Isolate
                 .ConfigureConfiguration(config => config
                     .SetBasePath(hostEnvironment.ContentRootPath)
                     .AddInMemoryCollection(data)
-                    .AddJsonFile("config/default.json", optional: false));
+                    .AddJsonFile("config/appsettings.json", optional: false));
         }
     }
 }
