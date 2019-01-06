@@ -14,23 +14,16 @@ namespace Bp.HealthChecks
         {
             IHealthChecksBuilder healthChecks = services.AddHealthChecks();
 
-            // TODO: Use real config path
-            string sqlConfig = configuration["Data:ConnectionStrings:Sql"];
+            string sqlConfig = configuration["Data:SqlServer:ConnectionString"];
             if (sqlConfig != null)
             {
-                healthChecks.AddSqlServer(sqlConfig, name: "sql-health", tags: new[] {HealthCheckTag.DATA});
+                healthChecks.AddSqlServer(sqlConfig, name: "sql-server-health", tags: new[] {HealthCheckTag.DATA});
             }
 
-            string elasticConfig = configuration["Data:ConnectionStrings:Elastic"];
-            if (elasticConfig != null)
-            {
-                healthChecks.AddElasticsearch(elasticConfig, name: "elastic-health", tags: new[] {HealthCheckTag.DATA});
-            }
-
-            string mongoConfig = configuration["Data:ConnectionStrings:Mongo"];
+            string mongoConfig = configuration["Data:MongoDB:ConnectionString"];
             if (mongoConfig != null)
             {
-                healthChecks.AddMongoDb(mongoConfig, name: "mongo-health", tags: new[] {HealthCheckTag.DATA});
+                healthChecks.AddMongoDb(mongoConfig, name: "mongodb-health", tags: new[] {HealthCheckTag.DATA});
             }
 
             // When there is redirect to https, the url group fails
