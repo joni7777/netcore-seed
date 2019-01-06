@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using Bp.HealthChecks;
 using Bp.RouterAliases;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -35,17 +36,14 @@ namespace Bp.ApiRunner
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                     .AddApplicationPart(Assembly.GetEntryAssembly());
             
-            services.AddSwaggerGen(c =>
-            {
-                
-                c.SwaggerDoc(_service.Version, new OpenApiInfo {Title = _service.Name, Version = _service.Version});
-            });
+            services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo {Title = _service.Name, Version = _service.Version}));
+            services.ConfigureBpHealthChecksServices(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
+            if (!env.IsProduction())
             {
                 app.UseDeveloperExceptionPage();
             }
@@ -53,9 +51,10 @@ namespace Bp.ApiRunner
             {
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
+                app.UseHttpsRedirection();
             }
 
-            app.UseHttpsRedirection();
+            app.UseBpHealthChecks();
             app.UseMvc();
             app.UseSwagger();
             app.UseSwaggerUI(c => { c.SwaggerEndpoint($"/swagger/{_service.Version}/swagger.json", $"{_service.Name} V{_service.Version}"); });

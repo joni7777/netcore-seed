@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp2.2</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.App" />
+        <PackageReference Include="Microsoft.AspNetCore.Diagnostics.HealthChecks" Version="2.2.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0-beta" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Bp.Config\Bp.Config.csproj" />
+      <ProjectReference Include="..\Bp.HealthChecks\Bp.HealthChecks.csproj" />
+      <ProjectReference Include="..\Bp.RouterAliases\Bp.RouterAliases.csproj" />
+      <ProjectReference Include="..\BpSeed.Common\BpSeed.Common.csproj" />
+    </ItemGroup>
+
+</Project>
