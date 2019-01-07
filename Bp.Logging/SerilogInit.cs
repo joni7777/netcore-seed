@@ -33,6 +33,8 @@ namespace Bp.Logging
                     throw new ArgumentException(BpSplunkInfo.SPLUNK_MISSING_CONFIGURATION_MESSAGE);
                 configuration.WriteTo.BpMattermostSink(mattermostInfo, restrictedToMinimumLevel: LogEventLevel.Error);
             }
+
+            configuration.WriteTo.Console();
         }
     }
 }

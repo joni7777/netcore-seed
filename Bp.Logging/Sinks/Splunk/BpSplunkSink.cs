@@ -12,7 +12,7 @@ namespace Bp.Logging.Sinks.Splunk
     public class BpSplunkSink : BpBulkHttpSink
     {
         private readonly BpSplunkInfo _splunkInfo;
-        private AuthenticationHeaderValue _basicAuth;
+        private readonly AuthenticationHeaderValue _basicAuth;
 
         public BpSplunkSink(BpSplunkInfo splunkInfo, ConcurrentBag<LogEvent> logs = null, Timer timer = null,
             HttpClient httpClient = null)
