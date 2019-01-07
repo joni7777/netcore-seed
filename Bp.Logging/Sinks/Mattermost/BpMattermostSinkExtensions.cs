@@ -1,6 +1,4 @@
-using System.Collections.Concurrent;
 using System.Net.Http;
-using System.Threading;
 using Serilog;
 using Serilog.Configuration;
 using Serilog.Events;
