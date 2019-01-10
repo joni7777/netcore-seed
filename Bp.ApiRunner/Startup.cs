@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using Bp.HealthChecks;
+using Bp.Logging.EnrichWithRequestParams;
 using Bp.RouterAliases;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -55,6 +56,7 @@ namespace Bp.ApiRunner
                 app.UseHttpsRedirection();
             }
 
+            app.UseMiddleware<EnrichWithRequestParamsMiddleware>();
             app.UseBpHealthChecks();
             app.UseMvc();
             app.UseSwagger();
@@ -67,6 +69,11 @@ namespace Bp.ApiRunner
     {
         public SchoolContext(DbContextOptions<SchoolContext> options) : base(options)
         {
+        }
+        
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.EnableSensitiveDataLogging();
         }
     }
 }

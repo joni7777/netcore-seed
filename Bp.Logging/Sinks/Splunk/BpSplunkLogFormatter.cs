@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using Serilog.Context;
 using Serilog.Events;
 
 namespace Bp.Logging.Sinks.Splunk
