@@ -1,4 +1,4 @@
-﻿using BpSeed.API;
+﻿using Bp.ApiRunner;
 
 namespace Components
 {

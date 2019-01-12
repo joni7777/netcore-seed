@@ -26,11 +26,11 @@ namespace Bp.HealthChecks
                 healthChecks.AddMongoDb(mongoConfig, name: "mongodb-health", tags: new[] {HealthCheckTag.DATA});
             }
 
-            // When there is redirect to https, the url group fails
-            if (configuration["Kestrel:EndPoints:Https:Url"] != null)
+            // If server have https, the http endpoint will redirect to it and the health check will fail
+            if (configuration["Kestrel:EndPoints:Https:Url"] == null)
             {
                 healthChecks.AddUrlGroup(
-                    new Uri($"{configuration["Kestrel:EndPoints:Http:Url"].Replace("*", "localhost")}/swagger/v1/swagger.json"),
+                    new Uri($"{configuration["Kestrel:EndPoints:Http:Url"].Replace("*", "localhost")}/swagger/{configuration["Service:Version"]}/swagger.json"),
                     name: "Get swagger.json",
                     tags: new[] {HealthCheckTag.SANITY});
             }
