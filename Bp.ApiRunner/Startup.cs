@@ -1,7 +1,7 @@
-using System;
 using System.Reflection;
+using Bp.HealthChecks;
+using Bp.Logging.EnrichWithRequestParams;
 using Bp.RouterAliases;
-using BpSeed.Common;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -25,30 +25,29 @@ namespace Bp.ApiRunner
         }
 
         public IConfiguration Configuration { get; }
-
+        
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<SchoolContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            
             services
                 .AddMvc(options => options.Conventions.Add(
                     new RouteTokenTransformerConvention(new RouterParameterTransformer())))
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
-                    .AddApplicationPart(Assembly.GetEntryAssembly());
-            
+                .AddApplicationPart(Assembly.GetEntryAssembly());
+
             services.AddSwaggerGen(c =>
-            {
-                
-                c.SwaggerDoc(_serviceInfo.Version, new OpenApiInfo {Title = _serviceInfo.Name, Version = _serviceInfo.Version});
-            });
+                {
+                    c.SwaggerDoc(_serviceInfo.Version, new OpenApiInfo {Title = _serviceInfo.Name, Version = _serviceInfo.Version});
+                    c.DescribeAllEnumsAsStrings();
+                    c.DescribeStringEnumsInCamelCase();
+                });
+            services.ConfigureBpHealthChecksServices(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
+            if (!env.IsProduction())
             {
                 app.UseDeveloperExceptionPage();
             }
@@ -56,19 +55,18 @@ namespace Bp.ApiRunner
             {
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
+                app.UseHttpsRedirection();
             }
 
-            app.UseHttpsRedirection();
+            app.UseEnrichWithRequestParams();
+            app.UseBpHealthChecks();
             app.UseMvc();
             app.UseSwagger();
-            app.UseSwaggerUI(c => c.SwaggerEndpoint($"/swagger/{_serviceInfo.Version}/swagger.json", $"{_serviceInfo.Name} - V{_serviceInfo.Version}"));
-        }
-    }
-
-    public class SchoolContext : DbContext
-    {
-        public SchoolContext(DbContextOptions<SchoolContext> options) : base(options)
-        {
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint(_serviceInfo.SwaggerUrl, $"{_serviceInfo.Name} V{_serviceInfo.Version}");
+                c.DisplayOperationId();
+            });
         }
     }
 }

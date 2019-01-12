@@ -1,5 +1,4 @@
 using System;
-using Microsoft.Extensions.Configuration;
 
 namespace Bp.Logging.Sinks.Mattermost
 {
@@ -18,15 +17,6 @@ namespace Bp.Logging.Sinks.Mattermost
 
         public BpMattermostInfo()
         {
-            
-        }
-
-        public BpMattermostInfo(string protocol, string host, int port, string path)
-        {
-            Protocol = protocol;
-            Host = host;
-            Port = port;
-            Path = path;
         }
     }
 }

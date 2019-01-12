@@ -1,7 +1,7 @@
-using System;
 using Bp.RouterAliases;
 using Components.Sample.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Logging;
 
 namespace Components.Sample.Implementations
@@ -27,7 +27,7 @@ namespace Components.Sample.Implementations
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public string[] Get(int id)
+        public string[] GetById([BindRequired]int id)
         {
             return _sampleController.Get(id);
         }

@@ -1,6 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.Text;
+using Serilog.Context;
 using Serilog.Events;
 
 namespace Bp.Logging.Sinks.Splunk
@@ -11,7 +11,7 @@ namespace Bp.Logging.Sinks.Splunk
         {
             var formattedLog = new StringBuilder();
 
-            formattedLog.Append($"timestamp=\"{DateTime.Now.Millisecond.ToString()}\" ");
+            formattedLog.Append($"timestamp=\"{new DateTimeOffset(DateTime.UtcNow).ToUnixTimeMilliseconds()}\" ");
             formattedLog.Append($"severity=\"{logEvent.Level}\" ");
             formattedLog.Append($"action=\"{logEvent.RenderMessage()}\" ");
 

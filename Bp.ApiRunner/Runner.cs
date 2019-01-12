@@ -11,8 +11,11 @@ namespace Bp.ApiRunner
         {
             var builder = new WebHostBuilder()
                 .UseStartup<Startup>()
-                .UseKestrel()
                 .ConfigureAppConfiguration(ConfigureConfiguration.AddConfigurationByEnvironment)
+                .UseKestrel((builderContext, options) =>
+                {
+                    options.Configure(builderContext.Configuration.GetSection("Kestrel"));
+                })
                 .UseSerilog(SerilogInit.ConfigureLogger);
 
             builder.Build().Run();
