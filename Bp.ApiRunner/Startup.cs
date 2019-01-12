@@ -28,9 +28,6 @@ namespace Bp.ApiRunner
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<SchoolContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
             services
                 .AddMvc(options => options.Conventions.Add(
                     new RouteTokenTransformerConvention(new RouterParameterTransformer())))
@@ -38,7 +35,11 @@ namespace Bp.ApiRunner
                 .AddApplicationPart(Assembly.GetEntryAssembly());
 
             services.AddSwaggerGen(c =>
-                c.SwaggerDoc(_service.Version, new OpenApiInfo {Title = _service.Name, Version = _service.Version}));
+                {
+                    c.SwaggerDoc(_service.Version, new OpenApiInfo {Title = _service.Name, Version = _service.Version});
+                    c.DescribeAllEnumsAsStrings();
+                    c.DescribeStringEnumsInCamelCase();
+                });
             services.ConfigureBpHealthChecksServices(Configuration);
         }
 
@@ -56,24 +57,15 @@ namespace Bp.ApiRunner
                 app.UseHttpsRedirection();
             }
 
-            app.UseMiddleware<EnrichWithRequestParamsMiddleware>();
+            app.UseEnrichWithRequestParams();
             app.UseBpHealthChecks();
             app.UseMvc();
             app.UseSwagger();
             app.UseSwaggerUI(c =>
-                c.SwaggerEndpoint($"/swagger/{_service.Version}/swagger.json", $"{_service.Name} V{_service.Version}"));
-        }
-    }
-
-    public class SchoolContext : DbContext
-    {
-        public SchoolContext(DbContextOptions<SchoolContext> options) : base(options)
-        {
-        }
-        
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.EnableSensitiveDataLogging();
+            {
+                c.SwaggerEndpoint(_service.SwaggerUrl, $"{_service.Name} V{_service.Version}");
+                c.DisplayOperationId();
+            });
         }
     }
 }

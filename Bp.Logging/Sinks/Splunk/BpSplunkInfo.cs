@@ -21,16 +21,5 @@ namespace Bp.Logging.Sinks.Splunk
         public const string SPLUNK_MISSING_CONFIGURATION_MESSAGE = "Splunk missing required configuration";
 
         public BpSplunkInfo(){}
-
-        public BpSplunkInfo(string protocol, string host, string port, string username, string password, string index, string sourceType)
-        {
-            Protocol = protocol;
-            Host = host;
-            Port = port;
-            Username = username;
-            Password = password;
-            Index = index;
-            SourceType = sourceType;
-        }
     }
 }

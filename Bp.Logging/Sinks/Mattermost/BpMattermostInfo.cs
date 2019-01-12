@@ -17,15 +17,6 @@ namespace Bp.Logging.Sinks.Mattermost
 
         public BpMattermostInfo()
         {
-            
-        }
-
-        public BpMattermostInfo(string protocol, string host, string port, string path)
-        {
-            Protocol = protocol;
-            Host = host;
-            Port = port;
-            Path = path;
         }
     }
 }

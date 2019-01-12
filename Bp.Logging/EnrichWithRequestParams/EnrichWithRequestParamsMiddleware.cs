@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Serilog.Context;
 
@@ -19,10 +20,14 @@ namespace Bp.Logging.EnrichWithRequestParams
             {
                 await _next.Invoke(context);
             }
-//            await context.Response.WriteAsync("------- Before ------ \n\r");
-//            await _next(context);
-
-//            await context.Response.WriteAsync("\n\r------- After ------");
+        }
+    }
+    
+    public static class EnrichWithRequestParamsMiddlewareExtensions
+    {
+        public static void UseEnrichWithRequestParams(this IApplicationBuilder app)
+        {
+            app.UseMiddleware<EnrichWithRequestParamsMiddleware>();
         }
     }
 }

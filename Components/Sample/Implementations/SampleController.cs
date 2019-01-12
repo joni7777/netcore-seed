@@ -7,7 +7,6 @@ namespace Components.Sample.Implementations
     {
         public string[] Get()
         {
-            throw new ApplicationException();
             return Get(6);
         }
 

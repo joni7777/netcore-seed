@@ -4,15 +4,10 @@ namespace Bp.ApiRunner
     {
         public string Name { get; set; }
         public string Version { get; set; }
+        public string SwaggerUrl => $"/swagger/{Version}/swagger.json";
 
         public ServiceInfo()
         {
-        }
-
-        public ServiceInfo(string name, string version)
-        {
-            Name = name;
-            Version = version;
         }
     }
 }
