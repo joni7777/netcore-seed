@@ -1,11 +1,7 @@
 using System;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Bp.Common;
-using Microsoft.AspNetCore.Hosting.Server;
-using Microsoft.AspNetCore.Hosting.Server.Features;
-using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
