@@ -3,7 +3,7 @@ using Components.Sample.Interfaces;
 
 namespace Components.Sample.Implementations
 {
-    public class SampleController:ISampleController
+    public class SampleController : ISampleController
     {
         public string[] Get()
         {
@@ -12,7 +12,7 @@ namespace Components.Sample.Implementations
 
         public string[] Get(int id)
         {
-            return new []{"Sample", "Sample2", id.ToString()};
+            return new[] {"Sample", "Sample2", id.ToString()};
         }
     }
 }

@@ -7,7 +7,7 @@ namespace Bp.RouterAliases
     /// Transforms Routers URI.
     /// Removes the keyword 'Router'/'router' from the url, converts the url to kebab-case
     /// </summary>
-    public class RouterParameterTransformer: IOutboundParameterTransformer
+    public class RouterParameterTransformer : IOutboundParameterTransformer
     {
         /// <summary>
         /// Transforms the specified route value to a string for inclusion in a URI.
@@ -17,7 +17,10 @@ namespace Bp.RouterAliases
         /// <returns>The transformed value.</returns>
         public string TransformOutbound(object value)
         {
-            if (value == null) { return null; }
+            if (value == null)
+            {
+                return null;
+            }
 
             return Regex.Replace(value.ToString().Replace("Router", ""), "([a-z])([A-Z])", "$1-$2").ToLower();
         }

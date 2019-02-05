@@ -1,4 +1,6 @@
 ﻿using System.Reflection;
+using Bp.Common;
+using Bp.EndPointer;
 using Bp.HealthChecks;
 using Bp.Logging.EnrichWithRequestParams;
 using Bp.RouterAliases;
@@ -35,12 +37,13 @@ namespace Bp.ApiRunner
                 .AddApplicationPart(Assembly.GetEntryAssembly());
 
             services.AddSwaggerGen(c =>
-                {
-                    c.SwaggerDoc(_service.Version, new OpenApiInfo {Title = _service.Name, Version = _service.Version});
-                    c.DescribeAllEnumsAsStrings();
-                    c.DescribeStringEnumsInCamelCase();
-                });
+            {
+                c.SwaggerDoc(_service.Version, new OpenApiInfo {Title = _service.Name, Version = _service.Version});
+                c.DescribeAllEnumsAsStrings();
+                c.DescribeStringEnumsInCamelCase();
+            });
             services.ConfigureBpHealthChecksServices(Configuration);
+            services.AddHostedService<RegisterEndpointerHostedService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

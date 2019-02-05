@@ -1,4 +1,4 @@
-namespace Bp.ApiRunner
+namespace Bp.Common
 {
     public class ServiceInfo
     {

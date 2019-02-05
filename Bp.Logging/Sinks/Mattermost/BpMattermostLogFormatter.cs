@@ -7,7 +7,7 @@ namespace Bp.Logging.Sinks.Mattermost
     public class BpMattermostLogFormatter
     {
         private const string CODE_PREFIX = "```";
-        
+
         public static string Format(LogEvent log)
         {
             var logMessage = new StringBuilder();
@@ -36,7 +36,7 @@ namespace Bp.Logging.Sinks.Mattermost
         {
             return $"`{message}`";
         }
-        
+
         private static string Code(string message, string lang)
         {
             return $"{CODE_PREFIX}{lang}{Environment.NewLine}{message}{Environment.NewLine}{CODE_PREFIX}";
