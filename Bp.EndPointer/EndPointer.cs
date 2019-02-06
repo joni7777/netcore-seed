@@ -31,7 +31,7 @@ namespace Bp.EndPointer
 		{
 			var ctx = new CancellationTokenSource();
 			ctx.CancelAfter(3000);
-			
+
 			try
 			{
 				var respone = await _httpClient.PostAsync($"{_endPointerUrl}/{_environment}",
@@ -39,7 +39,7 @@ namespace Bp.EndPointer
 						JsonConvert.SerializeObject(new
 							{name = _serviceInfo.Name, url = baseUrl + _serviceInfo.SwaggerUrl}), Encoding.UTF8,
 						"application/json"), ctx.Token);
-				
+
 				if (!respone.IsSuccessStatusCode)
 				{
 					_logger?.LogWarning("Failed to register to the endpointer", respone.ReasonPhrase);
@@ -51,8 +51,12 @@ namespace Bp.EndPointer
 			}
 			catch (HttpRequestException e) when (e.Message == "Connection refused")
 			{
-				_logger?.LogWarning("Failed to register to the endpointer because of timeout");
-				_logger?.LogError(e.Message);
+				_logger?.LogWarning("Failed to register to the endpointer because of timeout", e.Message, e);
+				throw;
+			}
+			catch (TaskCanceledException e)
+			{
+				_logger?.LogError($"Failed to register to the endpointer because of: {e.Message}", e);
 				throw;
 			}
 			

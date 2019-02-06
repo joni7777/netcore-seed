@@ -32,8 +32,8 @@ namespace Bp.Logging
             if (mattermostInfo != null)
             {
                 if (!mattermostInfo.IsValid())
-                    throw new ArgumentException(BpSplunkInfo.SPLUNK_MISSING_CONFIGURATION_MESSAGE);
-                configuration.WriteTo.BpMattermostSink(mattermostInfo, restrictedToMinimumLevel: LogEventLevel.Error);
+                    throw new ArgumentException(BpMattermostInfo.MATTERMOST_MISSING_CONFIGURATION_MESSAGE);
+                configuration.WriteTo.BpMattermostSink(mattermostInfo);
             }
 
             configuration.WriteTo.Console();

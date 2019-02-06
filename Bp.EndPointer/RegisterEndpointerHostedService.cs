@@ -33,6 +33,12 @@ namespace Bp.EndPointer
 			await _endPointer.Register(_serverAddress);
 		}
 
+		/// <summary>
+		/// Parse the configuration kestrel server listen address
+		/// The address in the configuration will include '[::]' or 'localhost' or '*' and replacing it with the hostname
+		/// </summary>
+		/// <param name="address">Kestrel config listen address. Example: http://*:5000 OR http://[::]:5000 OR http://localhost:5000</param>
+		/// <returns>Returns the same address but the '[::]' or 'localhost' or '*' replaced with hostname</returns>
 		private string ParseServerAddress(string address)
 		{
 			return address
