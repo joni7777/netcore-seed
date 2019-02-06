@@ -42,6 +42,8 @@ namespace Bp.ApiRunner
                 c.DescribeAllEnumsAsStrings();
                 c.DescribeStringEnumsInCamelCase();
             });
+            services.AddCors(options => options.AddPolicy("AllowAll",
+                policyBuilder => policyBuilder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
             services.ConfigureBpHealthChecksServices(Configuration);
             services.AddHostedService<RegisterEndpointerHostedService>();
         }
