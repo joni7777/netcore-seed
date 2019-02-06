@@ -7,7 +7,7 @@ using Serilog.Events;
 
 namespace Bp.Logging.Sinks.Http
 {
-    public abstract class BpBulkHttpSink:ILogEventSink, IDisposable
+    public abstract class BpBulkHttpSink : ILogEventSink, IDisposable
     {
         private string _requestUrl;
         private readonly Timer _timer;
@@ -36,7 +36,7 @@ namespace Bp.Logging.Sinks.Http
             {
                 return;
             }
-            
+
             var request = new HttpRequestMessage(HttpMethod, _requestUrl)
             {
                 Content = GenerateRequestBody(EmptyLogsBag(_logs))
@@ -45,8 +45,10 @@ namespace Bp.Logging.Sinks.Http
             _httpClient.SendAsync(request);
         }
 
-        protected virtual void ConfigureHttpRequest(HttpRequestMessage request){}
-        
+        protected virtual void ConfigureHttpRequest(HttpRequestMessage request)
+        {
+        }
+
         protected abstract string GenerateRequestUri(LogEvent logEvent);
         protected abstract HttpContent GenerateRequestBody(ConcurrentBag<LogEvent> logs);
 
@@ -59,7 +61,7 @@ namespace Bp.Logging.Sinks.Http
         private ConcurrentBag<LogEvent> EmptyLogsBag(ConcurrentBag<LogEvent> logs)
         {
             ConcurrentBag<LogEvent> existingLogs = new ConcurrentBag<LogEvent>();
-            
+
             while (!logs.IsEmpty)
             {
                 if (logs.TryTake(out LogEvent log))

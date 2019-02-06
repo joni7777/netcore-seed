@@ -12,8 +12,7 @@ namespace Bp.RouterAliases
     /// When decorated on an assembly, all routers in the assembly will be treated as routers with API behavior.
     /// </para>
     /// </summary>
-    public class ApiRouterAttribute:ApiControllerAttribute
+    public class ApiRouterAttribute : ApiControllerAttribute
     {
-        
     }
 }

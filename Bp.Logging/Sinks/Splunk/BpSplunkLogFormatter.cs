@@ -19,7 +19,7 @@ namespace Bp.Logging.Sinks.Splunk
             {
                 formattedLog.Append($"{property.Key}={property.Value} ");
             }
-            
+
             return formattedLog.ToString();
         }
     }

@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bp.Logging", "Bp.Logging\Bp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bp.ApiRunner", "Bp.ApiRunner\Bp.ApiRunner.csproj", "{3DCE7B7E-B32B-4111-8A53-B4236FC2B690}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bp.EndPointer", "Bp.EndPointer\Bp.EndPointer.csproj", "{A344A164-26FB-46BD-9F5C-2F18A0E63E56}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +50,10 @@ Global
 		{1FC3D9A3-C787-4FF0-B89D-44300FB4055E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FC3D9A3-C787-4FF0-B89D-44300FB4055E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1FC3D9A3-C787-4FF0-B89D-44300FB4055E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A344A164-26FB-46BD-9F5C-2F18A0E63E56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A344A164-26FB-46BD-9F5C-2F18A0E63E56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A344A164-26FB-46BD-9F5C-2F18A0E63E56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A344A164-26FB-46BD-9F5C-2F18A0E63E56}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection

@@ -5,11 +5,11 @@ using Serilog.Events;
 
 namespace Bp.Logging.Sinks.Mattermost
 {
-    public class BpMattermostSink:BpHttpSink
+    public class BpMattermostSink : BpHttpSink
     {
         private readonly BpMattermostInfo _bpMattermostInfo;
 
-        public BpMattermostSink(BpMattermostInfo bpMattermostInfo, HttpClient httpClient = null) 
+        public BpMattermostSink(BpMattermostInfo bpMattermostInfo, HttpClient httpClient = null)
             : base(httpClient ?? new HttpClient())
         {
             _bpMattermostInfo = bpMattermostInfo;
@@ -17,7 +17,8 @@ namespace Bp.Logging.Sinks.Mattermost
 
         protected override string GenerateRequestUri(LogEvent logEvent)
         {
-            return $"{_bpMattermostInfo.Protocol}://{_bpMattermostInfo.Host}:{_bpMattermostInfo.Port}/{_bpMattermostInfo.Path}";
+            return
+                $"{_bpMattermostInfo.Protocol}://{_bpMattermostInfo.Host}:{_bpMattermostInfo.Port}/{_bpMattermostInfo.Path}";
         }
 
         protected override HttpContent GenerateRequestBody(LogEvent logEvent)

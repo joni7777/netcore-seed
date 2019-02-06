@@ -16,7 +16,9 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\Bp.Common\Bp.Common.csproj" />
         <ProjectReference Include="..\Bp.Config\Bp.Config.csproj" />
+        <ProjectReference Include="..\Bp.EndPointer\Bp.EndPointer.csproj" />
         <ProjectReference Include="..\Bp.HealthChecks\Bp.HealthChecks.csproj" />
         <ProjectReference Include="..\Bp.Logging\Bp.Logging.csproj" />
         <ProjectReference Include="..\Bp.RouterAliases\Bp.RouterAliases.csproj" />

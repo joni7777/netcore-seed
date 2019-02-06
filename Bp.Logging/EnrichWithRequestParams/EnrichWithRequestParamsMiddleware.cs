@@ -22,7 +22,7 @@ namespace Bp.Logging.EnrichWithRequestParams
             }
         }
     }
-    
+
     public static class EnrichWithRequestParamsMiddlewareExtensions
     {
         public static void UseEnrichWithRequestParams(this IApplicationBuilder app)

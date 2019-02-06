@@ -21,7 +21,7 @@ namespace Bp.HealthChecks
         {
             var reports = (await _healthCheckService.CheckHealthAsync(checks =>
                 checks.Tags.Contains(HealthCheckTag.SANITY))).Entries;
-            
+
             return reports.ToDictionary(pair => pair.Key, pair => new BpHealthReportEntry(pair.Value));
         }
 
@@ -30,7 +30,7 @@ namespace Bp.HealthChecks
         {
             var reports = (await _healthCheckService.CheckHealthAsync(checks =>
                 checks.Tags.Contains(HealthCheckTag.DATA))).Entries;
-            
+
             return reports.ToDictionary(pair => pair.Key, pair => new BpHealthReportEntry(pair.Value));
         }
     }

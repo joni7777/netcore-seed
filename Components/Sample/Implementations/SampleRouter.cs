@@ -15,7 +15,7 @@ namespace Components.Sample.Implementations
         {
             _logger = logger;
         }
-        
+
         [HttpGet]
         public string[] Get()
         {
@@ -27,7 +27,7 @@ namespace Components.Sample.Implementations
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public string[] GetById([BindRequired]int id)
+        public string[] GetById([BindRequired] int id)
         {
             return _sampleController.Get(id);
         }

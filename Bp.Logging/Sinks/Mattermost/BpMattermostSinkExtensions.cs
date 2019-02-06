@@ -9,9 +9,11 @@ namespace Bp.Logging.Sinks.Mattermost
     {
         public static LoggerConfiguration BpMattermostSink(
             this LoggerSinkConfiguration loggerConfiguration,
-            BpMattermostInfo bpMattermostInfo, HttpClient httpClient = null, LogEventLevel restrictedToMinimumLevel = LogEventLevel.Verbose)
+            BpMattermostInfo bpMattermostInfo, HttpClient httpClient = null,
+            LogEventLevel restrictedToMinimumLevel = LogEventLevel.Error)
         {
-            return loggerConfiguration.Sink(new BpMattermostSink(bpMattermostInfo, httpClient), restrictedToMinimumLevel);
+            return loggerConfiguration.Sink(new BpMattermostSink(bpMattermostInfo, httpClient),
+                restrictedToMinimumLevel);
         }
     }
 }
