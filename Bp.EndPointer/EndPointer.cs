@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading;
@@ -49,17 +50,12 @@ namespace Bp.EndPointer
 					_logger?.LogInformation("Registered successfully to the endpointer", respone.ReasonPhrase);
 				}
 			}
-			catch (HttpRequestException e) when (e.Message == "Connection refused")
+			catch (Exception e)
+				when ((e is HttpRequestException && e.Message == "Connection refused") || e is TaskCanceledException)
 			{
-				_logger?.LogWarning("Failed to register to the endpointer because of timeout", e.Message, e);
+				_logger?.LogWarning("Failed to register to the endpointer because of ", e.Message, e);
 				throw;
 			}
-			catch (TaskCanceledException e)
-			{
-				_logger?.LogError($"Failed to register to the endpointer because of: {e.Message}", e);
-				throw;
-			}
-			
 		}
 
 		public void Dispose()
