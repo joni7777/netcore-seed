@@ -1,17 +1,7 @@
-using System;
-using System.Linq;
-using System.Threading.Tasks;
-using Bp.Common;
 using Bp.Config;
-using Bp.EndPointer;
 using Bp.Logging;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.AspNetCore.Hosting.Server.Features;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Serilog;
-using IHostingEnvironment = Microsoft.Extensions.Hosting.IHostingEnvironment;
 
 namespace Bp.ApiRunner
 {

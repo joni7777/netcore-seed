@@ -19,9 +19,5 @@ namespace Bp.Logging.Sinks.Splunk
             !String.IsNullOrEmpty(SourceType);
 
         public const string SPLUNK_MISSING_CONFIGURATION_MESSAGE = "Splunk missing required configuration";
-
-        public BpSplunkInfo()
-        {
-        }
     }
 }

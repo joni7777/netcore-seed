@@ -1,4 +1,3 @@
-using System;
 using System.Net.Http;
 using System.Text;
 using Bp.Logging.Sinks.Http;
