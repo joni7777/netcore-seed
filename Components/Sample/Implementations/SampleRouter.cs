@@ -8,12 +8,13 @@ namespace Components.Sample.Implementations
 {
     public class SampleRouter : RouterBase
     {
-        private readonly ISampleController _sampleController = new SampleControllerFactory().Create();
         private readonly ILogger _logger;
+        private readonly ISampleController _sampleController;
 
-        public SampleRouter(ILogger<SampleRouter> logger)
+        public SampleRouter(ILogger<SampleRouter> logger, ISampleController sampleController)
         {
             _logger = logger;
+            _sampleController = sampleController;
         }
 
         [HttpGet]

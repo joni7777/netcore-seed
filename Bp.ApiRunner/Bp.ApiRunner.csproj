@@ -5,6 +5,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="AutoMapper" Version="8.0.0" />
+        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.0.0" />
         <PackageReference Include="Microsoft.AspNetCore.App" />
         <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
         <PackageReference Include="Serilog" Version="2.7.1" />
@@ -19,6 +21,7 @@
         <ProjectReference Include="..\Bp.Common\Bp.Common.csproj" />
         <ProjectReference Include="..\Bp.Config\Bp.Config.csproj" />
         <ProjectReference Include="..\Bp.EndPointer\Bp.EndPointer.csproj" />
+        <ProjectReference Include="..\Bp.ExtendConfigureServices\Bp.ExtendConfigureServices.csproj" />
         <ProjectReference Include="..\Bp.HealthChecks\Bp.HealthChecks.csproj" />
         <ProjectReference Include="..\Bp.Logging\Bp.Logging.csproj" />
         <ProjectReference Include="..\Bp.RouterAliases\Bp.RouterAliases.csproj" />

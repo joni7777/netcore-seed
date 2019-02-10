@@ -1,6 +1,8 @@
 ﻿using System.Reflection;
+using AutoMapper;
 using Bp.Common;
 using Bp.EndPointer;
+using Bp.ExtendConfigureServices;
 using Bp.HealthChecks;
 using Bp.Logging.EnrichWithRequestParams;
 using Bp.RouterAliases;
@@ -46,6 +48,8 @@ namespace Bp.ApiRunner
                 policyBuilder => policyBuilder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
             services.ConfigureBpHealthChecksServices(Configuration);
             services.AddHostedService<RegisterEndpointerHostedService>();
+            services.AddAutoMapper();
+            services.ExtendConfigureServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

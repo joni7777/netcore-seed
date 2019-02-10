@@ -16,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bp.ApiRunner", "Bp.ApiRunne
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bp.EndPointer", "Bp.EndPointer\Bp.EndPointer.csproj", "{A344A164-26FB-46BD-9F5C-2F18A0E63E56}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bp.ExtendConfigureServices", "Bp.ExtendConfigureServices\Bp.ExtendConfigureServices.csproj", "{F87304BF-A74B-4487-A087-D01B3B6EA44B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,6 +56,10 @@ Global
 		{A344A164-26FB-46BD-9F5C-2F18A0E63E56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A344A164-26FB-46BD-9F5C-2F18A0E63E56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A344A164-26FB-46BD-9F5C-2F18A0E63E56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F87304BF-A74B-4487-A087-D01B3B6EA44B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F87304BF-A74B-4487-A087-D01B3B6EA44B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F87304BF-A74B-4487-A087-D01B3B6EA44B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F87304BF-A74B-4487-A087-D01B3B6EA44B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
