@@ -6,14 +6,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Bp.ApiRunner\Bp.ApiRunner.csproj" />
-      <ProjectReference Include="..\Bp.RouterAliases\Bp.RouterAliases.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.App" />
         <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.0" />
         <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.2.0" />
+        <PackageReference Include="Bp.ApiRunner" Version="1.0.1" />
+        <PackageReference Include="Bp.RouterAliases" Version="1.0.1" />
     </ItemGroup>
 
 </Project>
