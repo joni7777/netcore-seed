@@ -3,7 +3,7 @@ Bp dotnet core seed for microservices
 
 # How to use
 Fork the repo to A new git repo, using the naming convention: `bp-{SERVICE_NAME}-service`
-Rename the sln file in the new repo, to the service name, `bp-{SERVICE_NAME}-service.sln`
+Rename the sln file in the new repo, to the service name, `Bp{ServiceName}Service.sln`
 Rename in the `Config\appsettings.json` the service info (version and name)
 
 # How to add components
@@ -137,6 +137,6 @@ Allow extending configure services of the ApiRunner
 Using reflection:
 1. loads the EntryAssembly
 2. looks for Class with the name: `BpConfigureServices`
-3. look for A static public method: `ExtendConfigureServices`
-4. invoke the method from before with the services collection
-If the class or the method are null it just continue
+3. look for A static public method: `ExtendConfigureServices` AND OR `ExtendConfigure` 
+4. invoke the method(s) from before with the default startup arguments (`IServiceCollection`, `IConfiguration` for `ExtendConfigureServices` and `IApplicationBuilder`, `IHostingEnvironment`, `IConfiguration` for `ExtendConfigure`) 
+If the class or one of the methods are null it just skip the null class or method

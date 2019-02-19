@@ -1,5 +1,8 @@
 using Components.Sample.Implementations;
 using Components.Sample.Interfaces;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Components
@@ -11,6 +14,12 @@ namespace Components
 		public static void ExtendConfigureServices(IServiceCollection services)
 		{
 			services.AddSingleton<ISampleController, SampleController>();
+		}
+		
+		public static void ExtendConfigure(IApplicationBuilder app, IHostingEnvironment env, IConfiguration configuration)
+		{
+			// Example for the usage:
+			// app.UseMvc();
 		}
 	}
 }
