@@ -11,7 +11,7 @@ namespace Components
 	// Used to extend the app service collection
 	public class BpConfigureServices
 	{
-		public static void ExtendConfigureServices(IServiceCollection services)
+		public static void ExtendConfigureServices(IServiceCollection services, IConfiguration configuration)
 		{
 			services.AddSingleton<ISampleController, SampleController>();
 		}
