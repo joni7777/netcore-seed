@@ -3,6 +3,7 @@ using Components.Sample.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Logging;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace Components.Sample.Implementations
 {
@@ -18,6 +19,7 @@ namespace Components.Sample.Implementations
         }
 
         [HttpGet]
+        [SwaggerResponse(200, "OK")]
         public string[] Get()
         {
             _logger.LogInformation("6");
@@ -28,6 +30,7 @@ namespace Components.Sample.Implementations
 
         // GET api/values/5
         [HttpGet("{id}")]
+        [SwaggerResponse(200, "Sample", typeof(string[]))]
         public string[] GetById([BindRequired] int id)
         {
             return _sampleController.Get(id);
