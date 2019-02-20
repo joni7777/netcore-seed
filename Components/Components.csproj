@@ -12,6 +12,7 @@
         <PackageReference Include="Bp.ApiRunner" Version="1.0.2" />
         <PackageReference Include="Bp.RouterAliases" Version="1.0.1" />
         <PackageReference Include="Bp.Common" Version="1.0.1" />
+        <PackageReference Include="Bp.Cache" Version="1.0.0" />
     </ItemGroup>
 
 </Project>
