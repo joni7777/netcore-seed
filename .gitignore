@@ -35,3 +35,9 @@ msbuild.wrn
 
 # Jetbrains
 .idea/
+
+# Local Config
+Config/*.Local.json
+
+# Local Profile
+Components/Properties
