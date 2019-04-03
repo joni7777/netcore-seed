@@ -9,7 +9,7 @@
         <PackageReference Include="Microsoft.AspNetCore.App" />
         <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.0" />
         <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.2.0" />
-        <PackageReference Include="Bp.ApiRunner" Version="1.1.1" />
+        <PackageReference Include="Bp.ApiRunner" Version="1.1.2" />
         <PackageReference Include="Bp.RouterAliases" Version="1.1.0" />
         <PackageReference Include="Bp.Common" Version="1.1.0" />
         <PackageReference Include="Bp.Cache" Version="1.1.0" />
