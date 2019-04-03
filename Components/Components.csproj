@@ -15,5 +15,8 @@
         <PackageReference Include="Bp.Cache" Version="1.1.0" />
         <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="5.0.0-beta" />
     </ItemGroup>
-
+    
+    <ItemGroup>
+        <None Include="./Config/*.json" CopyToOutputDirectory="PreserveNewest"/>
+    </ItemGroup>
 </Project>
